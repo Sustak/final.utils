@@ -16,7 +16,9 @@
 
 #include "str.h"
 #include "utils.h"
+
 #include <limits.h>
+#include <stdlib.h>
 
 namespace utils {
 

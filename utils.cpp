@@ -26,7 +26,8 @@
 // #include "datetime.cpp"
 // #include "table.cpp"
 
-#include <iostream.h>
+#include <iostream>
+using namespace std;
 
 //---------------------------------------------------------------------------
 
