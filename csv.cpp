@@ -1,5 +1,18 @@
-// Copyright (c) by Marek Sestak, marses@volny.cz
-// All rights reserved.
+// final.utils - Utility functions used by final projects.
+// Copyright (c) 2004 - 2012 by Marek Sestak, marek.sestak@gmail.com
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "csv.h"
 #include <stdio.h>
@@ -141,7 +154,7 @@ void DecodeCSVString( TStringVector &strings, const TString& astring, char adeli
         break;
       default:
         strings.clear();
-/* TODO : Není uplnì jasné, zda v pøípadì failu smazat to, co se dosud udìlalo... */
+/* TODO : Nenï¿½ uplnï¿½ jasnï¿½, zda v pï¿½ï¿½padï¿½ failu smazat to, co se dosud udï¿½lalo... */
         throw TException( "Unknown error in DecodeCSVString." );
     }
   }
