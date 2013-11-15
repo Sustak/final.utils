@@ -102,7 +102,7 @@ void StringVectorToString( const TStringVector &sv, TString &string, char adelim
   }
 }
 
-int CountChar( const char* &astr )
+unsigned int CountChar( const char* &astr )
 {
   const char *c = astr;
   if( *c==0 )
@@ -454,9 +454,10 @@ TString DateToString( const TDateTime& adate, const TString& aformat )
   while( *fmt )
   {
     fmtc = *fmt;
-    int n = CountChar( fmt );
+    unsigned int n = CountChar( fmt ); // pointer fmt moved in the CountChar!
+    
     if( n == 1 )
-      partform = "%d";
+      partform = TString("%d");
     else
       partform = "%0" + TString(n) + "d";
 

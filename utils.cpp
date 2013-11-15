@@ -24,7 +24,6 @@
 // #include "io.cpp"
 // #include "maths.cpp"
 // #include "datetime.cpp"
-// #include "table.cpp"
 
 #include <iostream>
 using namespace std;
@@ -77,7 +76,7 @@ TException::TException( const TString &amsg )
 
 void ReportError( const TString &astr )
 {
-  cerr << "ReportError: " << astr << endl;
+  std::cerr << "ReportError: " << astr.c_str() << endl;
 //  _errors.
 }
 

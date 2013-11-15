@@ -19,6 +19,7 @@
 
 #include <limits.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 namespace utils {
 
@@ -41,7 +42,7 @@ TString::TString( int a )
   data = NULL;
 
   char c[64];
-  sprintf(c,"%d",a);
+  ::sprintf( c,"%d",a);
 
   int len = strlen(c);
   Realloc( len );
@@ -67,7 +68,7 @@ TString::TString( unsigned int a )
   char c[64];
 
   //ltoa( la, c, 10 );
-  sprintf(c,"%u",a);
+  ::sprintf(c,"%u",a);
 
   int len = strlen(c);
   Realloc( len );
@@ -107,7 +108,7 @@ TString::TString( const char *astr )
   Realloc( len );
 
   if( len>0 )
-    strcpy( data, astr );
+    ::strcpy( data, astr );
 }
 
 TString::TString( const char* c, unsigned int len )
@@ -176,7 +177,7 @@ TString& TString::Insert( const TString& str, unsigned int index )
     if( inslen==0 )
       return *this;
 
-    int curlen = Length();
+    unsigned int curlen = Length();
     const char *insstr = str.c_str();
 
     char *newdata = new char[ curlen+inslen+1 ];
@@ -247,8 +248,8 @@ TString TString::SubString( unsigned int index, unsigned int count ) const
     index = 1;
   index--;
 
-  int remlen = Length()-index;
-  int reallen = remlen<count ? remlen : count;
+  unsigned int remlen = Length()-index;
+  unsigned int reallen = remlen<count ? remlen : count;
 
   return TString( data+index, reallen );
 }
@@ -411,44 +412,6 @@ TString& TString::cat_sprintf( const char* format, ... )
   return *this;
 }
 
-/* old versions, can be deleted
-int TString::printf( const string& format, ... )
-{
-  va_list ap;
-  int ret, size;
-
-  va_start( ap, format );
-  size = vsnprintf( NULL, 0, format.c_str(), ap );
-
-  char *c = new char[ size + 1 ];
-  ret = vsprintf( c, format.c_str(), ap);
-  va_end(ap);
-
-  *this = string( c );
-
-  delete[] c;
-  return ret;
-}
-
-int TString::printf( const char* format, ... )
-{
-  va_list ap;
-  int ret, size;
-
-  va_start( ap, format );
-  size = vsnprintf( NULL, 0, format, ap );
-
-  char *c = new char[ size + 1 ];
-  ret = vsprintf( c, format, ap);
-  va_end(ap);
-
-  *this = string( c );
-
-  delete[] c;
-  return ret;
-}
-*/
-
 TString TString::UpperCase() const
 {
   TString ret( *this );
@@ -466,24 +429,6 @@ TString TString::LowerCase() const
   }
   return ret;
 };
-
-/*
-TString::operator const char*() const
-{
-  if( data )
-    return data;
-  else
-    return "";
-}
-
-TString::operator char*()
-{
-  if( data )
-    return data;
-  else
-    return "";
-}
-*/
 
 TString& TString::operator=( const char* astr )
 {

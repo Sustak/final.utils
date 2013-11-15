@@ -136,6 +136,8 @@ int CompareDoubles( double a, double b )
   return 1;
 }
 
+#ifndef __CYGWIN__
+
 int CompareDoubles( long double a, long double b )
 {
   int exp1, exp2;
@@ -152,6 +154,15 @@ int CompareDoubles( long double a, long double b )
 
   return 1;
 }
+
+#else
+
+int CompareDoubles( long double a, long double b ) 
+{
+    return CompareDoubles( (double)a, (double)b );
+}
+
+#endif
 
 bool IsEqual( double a, double b )
 {
